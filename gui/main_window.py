@@ -177,12 +177,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.points_2d_ep["TY3"] = QtCore.QPointF(self.y, 0)
         self.points_2d_ep["TZ"] = QtCore.QPointF(0, -self.z)
 
-    def draw_result(self):
+    def draw_result(self) -> None:
         self.draw_ax_plane()
         self.draw_ep_plane()
 
-    def draw_ax_plane(self):
+    def draw_ax_plane(self) -> None:
         self.aps.draw_with_points(self.points_2d_ax)
 
-    def draw_ep_plane(self):
+    def draw_ep_plane(self) -> None:
         self.cps.draw_with_points(self.points_2d_ep)

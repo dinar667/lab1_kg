@@ -22,7 +22,7 @@ class ComplexPlaneSystem(BasePlaneSystem):
         self.zy_y_line_pen = QtGui.QPen(self.zy_y_line_color, self.line_width)
         self.zy_z_line_pen = QtGui.QPen(self.zy_z_line_color, self.line_width)
 
-    def update_pixmap(self):
+    def update_pixmap(self) -> None:
         painter: QtGui.QPainter = QtGui.QPainter(self.pixmap)
         painter.begin(self.pixmap)
 

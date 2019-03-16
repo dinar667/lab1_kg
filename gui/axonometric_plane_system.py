@@ -6,7 +6,7 @@ from gui.base_plane_system import BasePlaneSystem
 
 
 class AxonometricPlaneSystem(BasePlaneSystem):
-    def __init__(self, widget: QtWidgets.QWidget):
+    def __init__(self, widget: QtWidgets.QWidget) -> None:
         super().__init__(widget)
 
         # Цвета осей координат
