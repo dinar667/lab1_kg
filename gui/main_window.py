@@ -1,7 +1,7 @@
 # coding: utf-8
 
 from math import cos, sin, radians
-from typing import Dict
+from typing import Dict, Callable
 
 from PyQt5 import QtCore, QtWidgets
 
@@ -132,19 +132,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.points_3d["+Z"] = Point3D(0, 0, self.axis_length)
 
     def from_3d_to_ax_scene(self, point: Point3D) -> QtCore.QPointF:
-        x: int = self._origin.x + (
-                + point.x * cos(self.alpha)
-                + point.y * cos(self.beta)
-                + point.z * cos(self.gamma)
-        )
-
-        y: int = self._origin.y - (
-                + point.x * sin(self.alpha)
-                + point.y * sin(self.beta)
-                + point.z * sin(self.gamma)
-        )
+        x: int = self._origin.x + self.calculate_point(point, cos)
+        y: int = self._origin.y - self.calculate_point(point, sin)
 
         return QtCore.QPointF(x, y)
+
+    def calculate_point(self, point: Point3D, function: Callable) -> int:
+        return point.x * function(self.alpha) \
+               + point.y * function(self.beta) \
+               + point.z * function(self.gamma)
 
     def recalculate_all(self) -> None:
         self.recalculate_ax_coordinates()
