@@ -45,9 +45,9 @@ class BasePlaneSystem:
         painter: QtGui.QPainter, axis: QtCore.QLineF, pen, dash_pen
     ) -> None:
         painter.setPen(pen)
-        painter.drawLine(0, 0, axis.x1(), axis.y1())
+        painter.drawLine(0, 0, int(axis.x1()), int(axis.y1()))
         painter.setPen(dash_pen)
-        painter.drawLine(0, 0, axis.x2(), axis.y2())
+        painter.drawLine(0, 0, int(axis.x2()), int(axis.y2()))
 
     def draw_with_points(self, points: Dict[str, QtCore.QPointF]) -> None:
         self.points = points
@@ -64,6 +64,7 @@ class BasePlaneSystem:
         event.accept()
 
     def update_pixmap(self) -> None:
+        """ Здесь идет основная отрисовка на `pixmap` """
         raise NotImplementedError
 
     def resize_event(self, event: QtGui.QResizeEvent) -> None:
